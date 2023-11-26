@@ -1,0 +1,23 @@
+// Functions first
+@import "../../node_modules/bootstrap/scss/functions";
+
+// Variable overrides second
+@import "variable";
+@import "variable-dark";
+@import "common";
+// Default theme
+@import "@splidejs/react-splide/css";
+
+// or other themes
+// @import "@splidejs/react-splide/css/skyblue";
+// @import "@splidejs/react-splide/css/sea-green";
+
+// Required Bootstrap imports
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/variables-dark";
+@import "../../node_modules/bootstrap/scss/maps";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/root";
+
+// Optional components
+@import "../../node_modules/bootstrap/scss/bootstrap";
