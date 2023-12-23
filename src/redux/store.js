@@ -1,15 +1,14 @@
-import { applyMiddleware, createStore, combineReducers } from 'redux'
-import movieReducer from './reducer/movieReducer'
-import watchlistReducer from './reducer/watchlistReducer'
-import movieDetailReducer from "./reducer/movieDetailReducer"
-import similarReducer from "./reducer/similarReducer"
-import genreReducer from "./reducer/genreReducer"
-import tvReducer from "./reducer/tvReducer"
-import tvDetailReducer from "./reducer/tvDetailReducer"
-import thunk from 'redux-thunk';
-import searchReducer from './reducer/searchReducer'
+import { configureStore } from '@reduxjs/toolkit';
+import movieReducer from './movieSlice';
+import watchlistReducer from './watchlistSlice';
+import movieDetailReducer from './movieDetailSlice';
+import similarReducer from './similarSlice';
+import genreReducer from './genreSlice';
+import tvReducer from './tvSlice';
+import tvDetailReducer from './tvDetailSlice';
+import searchReducer from './searchSlice';
 
-const rootReducer = combineReducers({
+const rootReducer = {
     movie: movieReducer,
     movieDetail: movieDetailReducer,
     tv: tvReducer,
@@ -17,9 +16,11 @@ const rootReducer = combineReducers({
     genres: genreReducer,
     similar: similarReducer,
     watchlist: watchlistReducer,
-    search: searchReducer
-});
+    search: searchReducer,
+};
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = configureStore({
+    reducer: rootReducer,
+});
 
 export default store;

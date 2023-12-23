@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { baseImageUrl, options } from '../../constants/contants';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
+import { Link } from 'react-router-dom';
 
 const MovieList = ({ genre, type }) => {
     const [movies, setMovies] = useState([]);
@@ -10,7 +11,7 @@ const MovieList = ({ genre, type }) => {
         axios.get(`discover/${type}?sort_by=popularity.desc&with_genres=${genre.id}`, options)
             .then((res) => setMovies(res.data.results))
             .catch((err) => console.log(err));
-    }, [genre.id]);
+    }, [genre.id, type]);
 
     const option = {
         perPage: type === "movie" ? 6 : 4,
@@ -41,10 +42,13 @@ const MovieList = ({ genre, type }) => {
             <Splide options={option}>
                 {movies && movies.map((movie) => (
                     <SplideSlide key={movie.id}>
-                        <img className='img-fluid'
-                            src={baseImageUrl.concat(type === "movie" ? movie?.poster_path : movie?.backdrop_path)}
-                            alt={movie.title}
-                        />
+                        <Link to={`/${type}/${movie.id}`}>
+                            <img
+                                className='img-fluid'
+                                src={baseImageUrl.concat(type === 'movie' ? movie?.poster_path : movie?.backdrop_path)}
+                                alt={movie ? movie.title : 'Image'}
+                            />
+                        </Link>
                     </SplideSlide>
                 ))}
             </Splide>

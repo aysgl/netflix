@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { baseImageUrl } from '../constants/contants';
 import { Link, useParams } from 'react-router-dom';
-import { getSearchMovie } from '../redux/actions/searchAction';
+import { getSearchMovie } from '../redux/searchSlice';
 
 const Search = () => {
     const { query } = useParams();

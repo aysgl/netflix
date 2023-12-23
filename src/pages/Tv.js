@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import Hero from "../components/Hero";
 import { useDispatch, useSelector } from "react-redux";
-import { getGenres } from "../redux/actions/genreAction";
-import { actionTypes } from "../redux/actionTypes";
+import { getGenres } from "../redux/genreSlice";
 import MovieList from "../components/MovieList";
 import Loading from "../components/Loading";
 import "../scss/style.scss";

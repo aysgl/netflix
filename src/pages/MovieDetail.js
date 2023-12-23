@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import { actionTypes } from '../redux/actionTypes';
 import { baseImageUrl } from '../constants/contants';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
-import { getMovieDetails } from '../redux/actions/movieDetailAction';
-import { getSimilarMovies } from '../redux/actions/similarAction';
+import { getMovieDetails } from '../redux/movieDetailSlice';
+import { getSimilarMovies } from '../redux/similarSlice';
 import Loading from '../components/Loading';
 
 const MoviemovieDetail = () => {

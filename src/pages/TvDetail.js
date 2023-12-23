@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import { actionTypes } from '../redux/actionTypes';
 import { baseImageUrl } from '../constants/contants';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
-import { getSimilarTv } from '../redux/actions/similarAction';
-import { getTvDetails } from '../redux/actions/tvDetailAction';
+import { getSimilarTv } from '../redux/similarSlice';
+import { getTvDetails } from '../redux/tvDetailSlice';
 import Loading from '../components/Loading';
 
 const TVDetail = () => {

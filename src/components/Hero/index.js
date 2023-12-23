@@ -3,10 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../Loading';
 import { Link } from 'react-router-dom';
 import { baseImageUrl } from '../../constants/contants';
-import { actionTypes } from '../../redux/actionTypes';
-import { getPopularMovie } from '../../redux/actions/movieAction';
-import { getPopularTv } from '../../redux/actions/tvAction';
-import { addToMyWatchlist } from '../../redux/actions/watchlistAction';
+import { getPopularMovie } from '../../redux/movieSlice';
+import { getPopularTv } from '../../redux/tvSlice';
+import { addToMyWatchlist } from '../../redux/watchlistSlice';
 
 const Hero = ({ type }) => {
     const state = useSelector(store => type === 'movie' ? store.movie : store.tv);
@@ -15,7 +14,6 @@ const Hero = ({ type }) => {
     const random = type === 'movie' ? state.movies?.[randomIndex] : state?.tv?.[randomIndex];
 
     useEffect(() => {
-        dispatch({ type: actionTypes[type.toUpperCase() + '_LOADING'] });
         dispatch(type === 'movie' ? getPopularMovie() : getPopularTv());
     }, [dispatch, type]);
 
@@ -30,10 +28,12 @@ const Hero = ({ type }) => {
                 :
                 <div className='row d-flex align-items-center vh-100'>
                     <div className='col-xl-4 col-lg-6 mb-5'>
-                        <h1 className='display-1 lh-1'>{random?.title?.length || random?.name?.length > 20
-                            ? random?.title?.slice(0, 18).concat("...") || random?.name?.slice(0, 18).concat("...")
-                            : random?.title || random?.name
-                        } <span className='display-6'>{random?.vote_average?.toFixed(1)}</span></h1>
+                        <h1 className='display-1 lh-1'>
+                            {random?.title?.length > 20
+                                ? `${random?.title.slice(0, 20)}...`
+                                : random?.title || (random?.name?.length > 20 ? `${random?.name.slice(0, 20)}...` : random?.name)}
+                            <span className='display-6'> {random?.vote_average?.toFixed(1)}</span>
+                        </h1>
                         <p className=''>{random?.overview?.length > 200 ? random?.overview?.slice(0, 200).concat("...") : random?.overview}</p>
 
                         <Link className='btn btn-light me-2' to={`/${type}/${random?.id}`}>Play</Link>

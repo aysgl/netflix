@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Hero from "../components/Hero";
 import { useDispatch, useSelector } from "react-redux";
-import { getGenres } from "../redux/actions/genreAction";
+import { getGenres } from "../redux/genreSlice";
 import MovieList from "../components/MovieList";
 import Loading from "../components/Loading";
 import "../scss/style.scss";
@@ -23,7 +23,7 @@ function App() {
         ) : state.isGenresError ? (
           <p>Hata oluştu</p>
         ) : (
-          state?.genres.map((genre) => (
+          state.genres.map((genre) => (
             <MovieList key={genre.id} genre={genre} type="movie" />
           ))
         )}

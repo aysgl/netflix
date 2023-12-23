@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { actionTypes } from '../redux/actionTypes';
 import Loading from "../components/Loading";
-// import { getMyWatchlist } from '../redux/actions/watchlistAction';
+// import { getMyWatchlist } from '../redux/watchlistSlice';
 
 const MyList = () => {
     const state = useSelector((store) => store.watchlistReducer);
